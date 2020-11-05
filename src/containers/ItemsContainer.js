@@ -1,18 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Item from '../components/Item'
+import Cart from '../components/Cart'
 
 class ItemsContainer extends Component {
+
+  renderItems = () => {
+    return this.props.items.map(item=>{
+      return <Item key={item.id} item={item} />
+    })
+  }
   render() {
     return (
-      <div>
-        ITEMS CONT
-      </div>
+      <>
+        <div>
+          {this.renderItems()}
+        </div>
+        {this.props.cartIsActive && (
+          <div>
+            <Cart />
+          </div>
+        )}
+      </>
     )
   }
 }
 const mapStateToProps = (state) => {
   return{
-    items: state.items
+    items: state.products.items,
+    cartIsActive: state.cart.active
   }
 }
 
