@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Item from '../components/Item'
+import Items from '../components/Items'
 import Cart from '../components/Cart'
+import { addToCart } from '../actions/CartActions'
 
 class ItemsContainer extends Component {
 
-  renderItems = () => {
-    return this.props.items.map(item=>{
-      return <Item key={item.id} item={item} />
-    })
-  }
+
   render() {
     return (
       <>
         <div>
-          {this.renderItems()}
+          <Items addToCart={this.props.addToCart} items={this.props.items}/>
         </div>
         {this.props.cartIsActive && (
           <div>
@@ -32,5 +29,11 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps =( dispatch) => {
+  return {
+    addToCart: item => dispatch(addToCart(item))
+  }
+}
 
-export default connect(mapStateToProps)(ItemsContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsContainer)
