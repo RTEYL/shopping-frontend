@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class ItemsContainer extends Component {
+class ItemsContainer extends Component {
   render() {
     return (
       <div>
-
+        ITEMS CONT
       </div>
     )
   }
 }
+const mapStateToProps = (state) => {
+  return{
+    items: state.items
+  }
+}
+
+
+export default connect(mapStateToProps)(ItemsContainer)
