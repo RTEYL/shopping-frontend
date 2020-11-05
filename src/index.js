@@ -2,17 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux'
-import {createStore,combineReducers, applyMiddleware} from 'redux'
+import {createStore,combineReducers,compose,applyMiddleware} from 'redux'
 import CartReducer from './reducers/CartReducer'
 import ItemsReducer from './reducers/ItemsReducer';
 import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({
   cart: CartReducer,
-  items: ItemsReducer
+  products: ItemsReducer
 })
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)))
+
 
 ReactDOM.render(
   <Provider store={store}>

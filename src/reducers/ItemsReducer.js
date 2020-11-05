@@ -1,16 +1,12 @@
 const initialState = {
-  category: '',
-  brand: '',
-  name: '',
-  description: '',
-  price: null
+  items: []
 }
 
 export default function itemsReducer(state = initialState, { type, payload }) {
   switch (type) {
 
-  case 'typeName':
-    return { ...state, ...payload }
+  case 'ADD_ITEM':
+    return { ...state, items: state.items.concat(payload)}
 
   default:
     return state
