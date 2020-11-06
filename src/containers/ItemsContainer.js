@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Items from '../components/Items'
-import Cart from '../components/Cart'
 import { addToCart } from '../actions/CartActions'
 
 class ItemsContainer extends Component {
@@ -9,16 +8,9 @@ class ItemsContainer extends Component {
 
   render() {
     return (
-      <>
-        <div>
+        <div className='items-container'>
           <Items addToCart={this.props.addToCart} items={this.props.items}/>
         </div>
-        {this.props.cartIsActive && (
-          <div>
-            <Cart />
-          </div>
-        )}
-      </>
     )
   }
 }
