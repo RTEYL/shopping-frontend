@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Cart from '../components/Cart'
-import { removeFromCart } from '../actions/CartActions'
+import { removeFromCart, setActive } from '../actions/CartActions'
 
 class CartContainer extends Component {
+
+  componentDidMount(){
+    if (this.props.items.length === 0){
+      return this.props.setActive(false)
+     }
+  }
+
   render() {
     return (
       <div className='cart-container'>
@@ -25,7 +32,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps =( dispatch) => {
   return {
-    removeFromCart: item => dispatch(removeFromCart(item))
+    removeFromCart: item => dispatch(removeFromCart(item)),
+    setActive: bool => dispatch(setActive(bool))
   }
 }
 

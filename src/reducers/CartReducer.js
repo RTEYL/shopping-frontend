@@ -4,14 +4,33 @@ const initialState = {
   active: false
 }
 
+let i;
+
 export default function cartReducer(state = initialState, { type, payload }){
   switch (type) {
 
   case 'ADD_TO_CART':
-    return { ...state, items: state.items.concat(payload), itemCount: state.itemCount + 1, active: true }
+    if (!payload.count || payload.count === 0) {
+      payload.count = 1
+      return { ...state, items: state.items.concat(payload), itemCount: state.itemCount + 1, active: true }
+    }else{
+      i = state.items.indexOf(payload)
+      state.items[i].count += 1
+      return { ...state, items: [...state.items], itemCount: state.itemCount + 1, active: true }
+    }
 
   case 'REMOVE_FROM_CART':
-    return {...state, items: state.items.filter(item=>item.id !== payload.id), itemCount: state.itemCount - 1}
+    if (payload.count === 1) {
+      payload.count -=1
+      return {...state, items: state.items.filter(item=>item.id !== payload.id), itemCount: state.itemCount - 1}
+    }else{
+      i = state.items.indexOf(payload)
+      state.items[i].count -= 1
+      return {...state, items: [...state.items], itemCount: state.itemCount - 1}
+    }
+
+    case 'SET_ACTIVE':
+      return {...state, active: payload}
   default:
     return state
   }

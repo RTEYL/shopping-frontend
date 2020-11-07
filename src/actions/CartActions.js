@@ -8,3 +8,9 @@ export function removeFromCart(item){
     dispatch({type: 'REMOVE_FROM_CART', payload: item})
   }
 }
+
+export function setActive(bool){
+  return dispatch => {
+    dispatch({type: 'SET_Active', payload: bool})
+  }
+}
