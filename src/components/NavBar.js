@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import Cart from './Cart'
+import Login from './Login';
+import Logout from './Logout';
 
 export default class NavBar extends Component {
   render() {
@@ -8,8 +10,10 @@ export default class NavBar extends Component {
       <div className='navbar'>
         <NavLink to='/' >Home</NavLink>
         <NavLink to='/about' >About</NavLink>
+        <Login />
+        <Logout />
         <h2>Shopping Center</h2>
-        <button onClick={()=><Cart/>}>Cart</button>
+        <NavLink to='/cart'>Cart</NavLink>
       </div>
     )
   }
