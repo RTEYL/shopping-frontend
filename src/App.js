@@ -15,10 +15,9 @@ class App extends Component{
           <NavBar />
           <Switch>
             <Route exact path='/' component={ItemsContainer}/>
-            {/* <Route exact path='/about' component={About}/> */}
+            <Route exact path='/cart' component={CartContainer}/>
             {/* <Route component={NoMatch}/> */}
           </Switch>
-          <CartContainer />
         </Router>
       </>
       )
