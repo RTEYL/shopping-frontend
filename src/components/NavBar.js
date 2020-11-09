@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
-import Cart from './Cart'
-import Login from './Login';
-import Logout from './Logout';
+import {Navbar, Nav, Image} from 'react-bootstrap'
+import Logout from './Logout'
+import Login from './Login'
 
 export default class NavBar extends Component {
   render() {
     return (
-      <div className='navbar'>
-        <NavLink to='/' >Home</NavLink>
-        <NavLink to='/about' >About</NavLink>
-        <Login />
-        <Logout />
-        <h2>Shopping Center</h2>
-        <NavLink to='/cart'>Cart</NavLink>
-      </div>
+      <Navbar bg='light' expand='lg' sticky='top' >
+        <Navbar.Brand href="/">Shopping Center</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Logout />
+            <Login />
+            <Nav.Link href="/cart">Cart</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }
