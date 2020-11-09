@@ -5,6 +5,10 @@ import NavBar from './components/NavBar'
 import {fetchItems} from './actions/Fetch'
 import {connect} from 'react-redux'
 import CartContainer from './containers/CartContainer'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Container from 'react-bootstrap/Container'
+import Login from './components/Login';
+import Logout from './components/Logout';
 
 class App extends Component{
   render(){
@@ -13,16 +17,20 @@ class App extends Component{
         {this.props.fetchItems()}
         <Router>
           <NavBar />
-          <Switch>
-            <Route exact path='/' component={ItemsContainer}/>
-            <Route exact path='/cart' component={CartContainer}/>
-            {/* <Route component={NoMatch}/> */}
-          </Switch>
-        </Router>
+          <Container>
+            <Switch>
+              <Route exact path='/' component={ItemsContainer}/>
+              <Route exact path='/cart' component={CartContainer}/>
+              <Route exact path='/login' component={Login}/>
+              <Route exact path='/logout' component={Logout}/>
+            </Switch>
+          </Container>
+          </Router>
       </>
-      )
+    )
   }
 }
+
 function mapDispatchToProps(dispatch){
   return { fetchItems: () => dispatch(fetchItems()) }
 }
