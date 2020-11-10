@@ -25,7 +25,7 @@ class App extends Component{
               <Route exact path='/logout' component={Logout}/>
             </Switch>
           </Container>
-        </Router>
+      </Router>
       </>
     )
   }

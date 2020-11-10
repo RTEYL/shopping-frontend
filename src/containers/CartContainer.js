@@ -7,6 +7,7 @@ class CartContainer extends Component {
 
   componentDidMount(){
     if (this.props.items.length === 0){
+      window.history.back()
       return this.props.setActive(false)
      }
   }
