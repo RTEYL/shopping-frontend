@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Container from 'react-bootstrap/Container'
 import Login from './components/Login';
 import Logout from './components/Logout';
+import CartForm from './components/CartForm';
 
 class App extends Component{
   render(){
@@ -23,6 +24,7 @@ class App extends Component{
               <Route exact path='/cart' component={CartContainer}/>
               <Route exact path='/login' component={Login}/>
               <Route exact path='/logout' component={Logout}/>
+              <Route exact path='/checkout' component={CartForm}/>
             </Switch>
           </Container>
       </Router>

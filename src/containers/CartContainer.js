@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 import { removeFromCart, setActive } from '../actions/CartActions'
+import { Link } from 'react-router-dom'
 
 class CartContainer extends Component {
 
@@ -18,6 +19,9 @@ class CartContainer extends Component {
         {this.props.cartIsActive && (
           <>
             <Cart removeFromCart={this.props.removeFromCart} items={this.props.items}/>
+            <Link to='/checkout'>
+              <button>Check Out</button>
+            </Link>
           </>
         )}
       </div>
