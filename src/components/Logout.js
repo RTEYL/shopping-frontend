@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import Nav from 'react-bootstrap/Nav'
+import { Link } from 'react-router-dom';
 
 
 const Logout = () => {
@@ -8,7 +9,7 @@ const Logout = () => {
 
   return (
     isAuthenticated && (
-      <Nav.Link href="/logout" onClick={()=>logout()}>
+      <Nav.Link eventKey='3' as={Link} to="/logout" onClick={()=>logout()}>
         Logout
       </Nav.Link>
     )
