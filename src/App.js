@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ItemsContainer from './containers/ItemsContainer';
 import NavBar from './components/NavBar'
-import {fetchItems} from './actions/Fetch'
+import {fetchItems, fetchLoggedInUser} from './actions/Fetch'
 import {connect} from 'react-redux'
 import CartContainer from './containers/CartContainer'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -12,6 +12,11 @@ import Logout from './components/Logout';
 import CartForm from './components/CartForm';
 
 class App extends Component{
+
+  componentDidMount(){
+    this.props.fetchLoggedInUser()
+  }
+
   render(){
     return(
       <>
@@ -34,7 +39,10 @@ class App extends Component{
 }
 
 function mapDispatchToProps(dispatch){
-  return { fetchItems: () => dispatch(fetchItems()) }
+  return {
+     fetchItems: () => dispatch(fetchItems()),
+     fetchLoggedInUser: () => dispatch(fetchLoggedInUser())
+    }
 }
 
 export default connect(null,mapDispatchToProps)(App);
