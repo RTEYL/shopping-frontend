@@ -7,10 +7,12 @@ import CartReducer from './reducers/CartReducer'
 import ItemsReducer from './reducers/ItemsReducer';
 import thunk from 'redux-thunk'
 import { Auth0Provider } from "@auth0/auth0-react";
+import UserReducer from './reducers/UserReducer';
 
 const rootReducer = combineReducers({
   cart: CartReducer,
-  products: ItemsReducer
+  products: ItemsReducer,
+  user: UserReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
