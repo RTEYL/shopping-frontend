@@ -1,19 +1,19 @@
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
-import Nav from 'react-bootstrap/Nav'
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import {logoutUser} from '../actions/Fetch'
 
 
-const Logout = () => {
-  const { logout, isAuthenticated } = useAuth0();
-
-  return (
-    isAuthenticated && (
-      <Nav.Link eventKey='3' as={Link} to="/logout" onClick={()=>logout()}>
-        Logout
-      </Nav.Link>
-    )
-  )
+class Logout extends Component{
+  componentDidMount(){
+    this.props.logoutUser()
+  }
+  render(){ return null }
 }
 
-export default Logout
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: () => dispatch(logoutUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Logout)
