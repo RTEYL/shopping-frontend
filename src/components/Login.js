@@ -1,19 +1,72 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import Nav from 'react-bootstrap/Nav'
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import { loginUser } from '../actions/Fetch';
+import Alert from 'react-bootstrap/Alert'
 
-const Login = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+class Login extends Component {
 
-  return (
-    !isAuthenticated && (
-      <Nav.Link eventKey='4' as={Link} to="/login" onClick={()=>loginWithRedirect()}>
-        Login/Signup
-      </Nav.Link>
-    )
-  )
+  state = {
+    email: '',
+    password: ''
+  };
 
-};
+handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  };
+handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.loginUser({user: this.state})
+  };
+render() {
+    const {email, password} = this.state
+    return (
+      <div>
+        <h1>Log In</h1>
+          {this.props.errors && (
+            <Alert variant="danger">
+              {this.props.errors}
+            </Alert>
+          )}
+        <form onSubmit={this.handleSubmit}>
+          <input
+            placeholder="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            />
+          <input
+            placeholder="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+            />
+          <button type="submit">Log In</button>
+          <div>
+            or <Link to='/signup'>sign up</Link>
+          </div>
 
-export default Login;
+         </form>
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: user => dispatch(loginUser(user))
+  }
+}
+
+const mapStateToProps = (state) => {
+return {
+  errors: state.user.user.errors
+}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
