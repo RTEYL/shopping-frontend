@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Logout from './Logout'
-import Login from './Login'
 
 export default class NavBar extends Component {
   render() {
@@ -14,8 +12,8 @@ export default class NavBar extends Component {
           <Nav className="mr-auto">
             <Nav.Link eventKey='1' as={Link} to="/">Home</Nav.Link>
             <Nav.Link eventKey='2' as={Link} to="/about">About</Nav.Link>
-            <Logout />
-            <Login />
+            <Nav.Link eventKey='3' as={Link} to="/logout">Logout</Nav.Link>
+            <Nav.Link eventKey='4' as={Link} to="/login">Login</Nav.Link>
             <Nav.Link eventKey='5' as={Link} to="/cart">Cart</Nav.Link>
           </Nav>
         </Navbar.Collapse>
