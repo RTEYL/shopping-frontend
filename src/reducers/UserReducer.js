@@ -12,6 +12,8 @@ export default function UserReducer(state = initialState, { type, payload }){
     return { ...state, user: payload.user, logged_in: payload.logged_in }
   case 'LOG_OUT':
     return { ...state, logged_in: payload.logged_in }
+  case 'LOG_IN_ERROR':
+    return { ...state, user: { errors: payload}}
 
   default:
     return state
