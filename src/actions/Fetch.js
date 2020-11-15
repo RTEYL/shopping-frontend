@@ -55,3 +55,29 @@ export function logoutUser(){
     .then(resp=>{console.log(resp.json())})
   }
 }
+
+export function userSignUp(user){
+  let configObj = {
+    withCredentials: true,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(user)
+  };
+  return (dispatch) => {
+    fetch('http://localhost:3000/sign_up',configObj)
+    .then(resp=>resp.json())
+    .then(json=>{
+      if (!!json.errors) {
+         throw new Error().message = json.errors
+      }else{
+        dispatch({type: 'LOG_IN', payload: json})
+      }
+    })
+    .catch(err =>{
+      dispatch({type: 'AUTH_ERROR', payload: err})
+      })
+  }
+}
