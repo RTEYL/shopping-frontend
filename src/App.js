@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container'
 import Login from './components/Login';
 import Logout from './components/Logout';
 import CartForm from './components/CartForm';
+import SignUp from './components/SignUp'
 
 class App extends Component{
 
@@ -22,13 +23,14 @@ class App extends Component{
       <>
         {this.props.fetchItems()}
         <Router>
-          <NavBar />
+          <NavBar loggedIn={this.props.logged_in} />
           <Container>
             <Switch>
               <Route exact path='/' component={ItemsContainer}/>
               <Route exact path='/cart' component={CartContainer}/>
               <Route exact path='/login' component={Login}/>
               <Route exact path='/logout' component={Logout}/>
+              <Route exact path='/signup' component={SignUp}/>
               <Route exact path='/checkout' component={CartForm}/>
             </Switch>
           </Container>
@@ -38,11 +40,17 @@ class App extends Component{
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = (dispatch) => {
   return {
      fetchItems: () => dispatch(fetchItems()),
      fetchLoggedInUser: () => dispatch(fetchLoggedInUser())
     }
 }
 
-export default connect(null,mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.user.logged_in
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
