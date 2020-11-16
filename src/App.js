@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {connect} from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Container from 'react-bootstrap/Container'
 import ItemsContainer from './containers/ItemsContainer';
 import NavBar from './components/NavBar'
 import {fetchItems, fetchLoggedInUser} from './actions/Fetch'
-import {connect} from 'react-redux'
 import CartContainer from './containers/CartContainer'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Container from 'react-bootstrap/Container'
 import Login from './components/Login';
 import Logout from './components/Logout';
 import CartForm from './components/CartForm';
