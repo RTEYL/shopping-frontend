@@ -33,14 +33,14 @@ render() {
           )}
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder="email"
+            placeholder="Email"
             type="email"
             name="email"
             value={email}
             onChange={this.handleChange}
             />
           <input
-            placeholder="password"
+            placeholder="Password"
             type="password"
             name="password"
             value={password}
@@ -48,7 +48,7 @@ render() {
             />
           <button type="submit">Log In</button>
           <div>
-            or <Link to='/signup'>sign up</Link>
+            or <Link to='/signup'>Sign Up</Link>
           </div>
 
          </form>
@@ -64,9 +64,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-return {
-  errors: state.user.user.errors
-}
+  return {
+    errors: state.user.user.errors
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
