@@ -15,13 +15,13 @@ import SignUp from './components/SignUp'
 class App extends Component{
 
   componentDidMount(){
+    this.props.fetchItems()
     this.props.fetchLoggedInUser()
   }
 
   render(){
     return(
       <>
-        {this.props.fetchItems()}
         <Router>
           <NavBar loggedIn={this.props.logged_in} />
           <Container>
