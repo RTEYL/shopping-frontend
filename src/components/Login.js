@@ -11,6 +11,10 @@ class Login extends Component {
     password: ''
   };
 
+componentDidMount(){
+  console.log(this.props);
+}
+
 handleChange = (event) => {
     const {name, value} = event.target
     this.setState({
@@ -59,13 +63,14 @@ render() {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: user => dispatch(loginUser(user))
+    loginUser: user => dispatch(loginUser(user)),
+    removeErrors: () => dispatch({type: 'REMOVE_ERRORS'})
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.user.user.errors
+    errors: state.user.user.errors,
   }
 }
 
