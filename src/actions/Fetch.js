@@ -37,8 +37,8 @@ export function loginUser(user){
       }
     })
     .catch(err =>{
-      dispatch({type: 'LOG_IN_ERROR', payload: err})
-      })
+      dispatch({type: 'AUTH_ERROR', payload: err})
+    })
   }
 }
 
