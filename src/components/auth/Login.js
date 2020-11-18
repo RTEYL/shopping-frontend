@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { loginUser } from '../actions/Fetch';
+import { loginUser } from '../../actions/Fetch';
 import Alert from 'react-bootstrap/Alert'
 
 class LoginForm extends Component {
@@ -20,8 +20,8 @@ class LoginForm extends Component {
   };
   handleSubmit = async (event) => {
     event.preventDefault()
-    await this.props.loginUser({user: this.state})
-    this.props.history.push('/')
+    await this.props.loginUser({user: this.state, history: this.props.history })
+    // this.props.history.push('/')
   };
   render() {
     const {email, password} = this.state
