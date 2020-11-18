@@ -1,15 +1,15 @@
-export function addToCart(item){
+export const addToCart = (item) => {
   return dispatch => {
     dispatch({type: 'ADD_TO_CART', payload: item})
   }
 }
-export function removeFromCart(item){
+export const removeFromCart = (item) => {
   return dispatch => {
     dispatch({type: 'REMOVE_FROM_CART', payload: item})
   }
 }
 
-export function setActive(bool){
+export const setActive = (bool) => {
   return dispatch => {
     dispatch({type: 'SET_Active', payload: bool})
   }

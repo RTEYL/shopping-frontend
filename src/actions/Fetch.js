@@ -1,4 +1,4 @@
-export function fetchItems(){
+export const fetchItems = () => {
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/items')
     .then(resp=>resp.json())
@@ -7,7 +7,7 @@ export function fetchItems(){
   }
 }
 
-export function fetchLoggedInUser(){
+export const fetchLoggedInUser = () => {
   return async (dispatch) => {
     fetch('http://localhost:3000/logged_in',{withCredentials: true})
     .then(resp=>resp.json())
@@ -16,7 +16,7 @@ export function fetchLoggedInUser(){
   }
 }
 
-export function loginUser(user){
+export const loginUser = (user) => {
   let configObj = {
     withCredentials: true,
     method: "POST",
@@ -42,7 +42,7 @@ export function loginUser(user){
   }
 }
 
-export function logoutUser(){
+export const logoutUser = () => {
   return (dispatch) => {
     fetch('http://localhost:3000/logout', {
       withCredentials: true,
@@ -56,7 +56,7 @@ export function logoutUser(){
   }
 }
 
-export function userSignUp(user){
+export const userSignUp = (user) => {
   let configObj = {
     withCredentials: true,
     method: "POST",
