@@ -1,5 +1,7 @@
 const initialState = {
-  user: {}
+  user: {},
+  errors: '',
+  logged_in: false
 }
 
 export default function UserReducer(state = initialState, { type, payload }){
@@ -10,11 +12,11 @@ export default function UserReducer(state = initialState, { type, payload }){
   case 'LOG_IN':
     return { ...state, user: payload.user, logged_in: payload.logged_in }
   case 'LOG_OUT':
-    return { ...state, user: {}, logged_in: payload.logged_in }
+    return { ...state, user: {}, logged_in: false }
   case 'AUTH_ERROR':
-    return { ...state, user: { ...state.user, errors: payload}}
+    return { ...state, errors: payload}
   case 'REMOVE_ERRORS':
-    return {...state, user: { ...state.user, errors: '' }}
+    return {...state, errors: '' }
 
   default:
     return state

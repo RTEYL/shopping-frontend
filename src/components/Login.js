@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.user.user.errors,
+    errors: state.user.errors
   }
 }
 
