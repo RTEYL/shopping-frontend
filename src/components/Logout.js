@@ -1,11 +1,13 @@
 import {Component} from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from "react-router";
 import {logoutUser} from '../actions/Fetch'
 
 
-class Logout extends Component{
-  componentDidMount(){
-    this.props.logoutUser()
+class LogoutForm extends Component{
+  componentDidMount = async () => {
+    await this.props.logoutUser()
+    this.props.history.push('/')
   }
   render(){ return null }
 }
@@ -16,4 +18,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Logout)
+export const Logout =  withRouter(connect(null, mapDispatchToProps)(LogoutForm));
