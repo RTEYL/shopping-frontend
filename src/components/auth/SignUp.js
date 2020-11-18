@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import Alert from 'react-bootstrap/Alert'
-import { userSignUp } from '../actions/Fetch';
+import { userSignUp } from '../../actions/Fetch';
 
-class SignUp extends Component {
+class SignUpForm extends Component {
 
   state = {
     email: '',
@@ -19,7 +20,7 @@ class SignUp extends Component {
     };
   handleSubmit = (event) => {
       event.preventDefault()
-      this.props.userSignUp({user: this.state})
+      this.props.userSignUp({user: this.state, history: this.props.history})
     };
   render() {
     const {email, password, password_confirmation} = this.state
@@ -70,4 +71,4 @@ const mapStateToProps = (state) => {
     errors: state.users.errors
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp)
+export const SignUp = withRouter(connect(mapStateToProps,mapDispatchToProps)(SignUpForm))

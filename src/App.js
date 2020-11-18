@@ -7,10 +7,10 @@ import ItemsContainer from './containers/ItemsContainer';
 import NavBar from './components/NavBar'
 import {fetchItems, fetchLoggedInUser} from './actions/Fetch'
 import CartContainer from './containers/CartContainer'
-import {Login} from './components/Login';
-import {Logout} from './components/Logout';
+import {Login} from './components/auth/Login';
+import {Logout} from './components/auth/Logout';
+import {SignUp} from './components/auth/SignUp'
 import CartForm from './components/CartForm';
-import SignUp from './components/SignUp'
 
 class App extends Component{
 

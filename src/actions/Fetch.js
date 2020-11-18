@@ -16,7 +16,7 @@ export const fetchLoggedInUser = () => {
   }
 }
 
-export const loginUser = (user) => {
+export const loginUser = (payload) => {
   let configObj = {
     credentials: 'include',
     method: "POST",
@@ -24,7 +24,7 @@ export const loginUser = (user) => {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
-    body: JSON.stringify(user)
+    body: JSON.stringify(payload)
   };
   return (dispatch) => {
     fetch('http://localhost:3000/login',configObj)
@@ -34,6 +34,7 @@ export const loginUser = (user) => {
          throw new Error().message = json.errors
       }else{
         dispatch({type: 'LOG_IN', payload: json})
+        payload.history.push('/')
       }
     })
     .catch(err =>{
@@ -52,11 +53,11 @@ export const logoutUser = () => {
         "Accept": "application/json"
       }
     })
-    .then(resp=>{console.log(resp.json())})
+    .then(() => dispatch({type: 'LOG_OUT'}))
   }
 }
 
-export const userSignUp = (user) => {
+export const userSignUp = (payload) => {
   let configObj = {
     credentials: 'include',
     method: "POST",
@@ -64,7 +65,7 @@ export const userSignUp = (user) => {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
-    body: JSON.stringify(user)
+    body: JSON.stringify(payload)
   };
   return (dispatch) => {
     fetch('http://localhost:3000/sign_up',configObj)
@@ -74,6 +75,7 @@ export const userSignUp = (user) => {
          throw new Error().message = json.errors
       }else{
         dispatch({type: 'LOG_IN', payload: json})
+        payload.history.push('/')
       }
     })
     .catch(err =>{
