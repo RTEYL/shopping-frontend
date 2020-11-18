@@ -1,4 +1,4 @@
-export function fetchItems(){
+export const fetchItems = () => {
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/items')
     .then(resp=>resp.json())
@@ -7,18 +7,18 @@ export function fetchItems(){
   }
 }
 
-export function fetchLoggedInUser(){
+export const fetchLoggedInUser = () => {
   return async (dispatch) => {
-    fetch('http://localhost:3000/logged_in',{withCredentials: true})
+    fetch('http://localhost:3000/logged_in',{credentials: 'include'})
     .then(resp=>resp.json())
     .then(json=>dispatch({type: 'IS_LOGGED_IN', payload: json}))
     .catch(err=>console.log('fetch error', err))
   }
 }
 
-export function loginUser(user){
+export const loginUser = (user) => {
   let configObj = {
-    withCredentials: true,
+    credentials: 'include',
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,10 +42,10 @@ export function loginUser(user){
   }
 }
 
-export function logoutUser(){
+export const logoutUser = () => {
   return (dispatch) => {
     fetch('http://localhost:3000/logout', {
-      withCredentials: true,
+      credentials: 'include',
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,9 +56,9 @@ export function logoutUser(){
   }
 }
 
-export function userSignUp(user){
+export const userSignUp = (user) => {
   let configObj = {
-    withCredentials: true,
+    credentials: 'include',
     method: "POST",
     headers: {
       "Content-Type": "application/json",
