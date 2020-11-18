@@ -1,8 +1,8 @@
 import {Navbar, Nav} from 'react-bootstrap'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
-const NavBar = ({loggedIn}) => {
-  console.log(loggedIn);
+const NavBar = (props) => {
   return (
     <Navbar collapseOnSelect bg='light' expand='lg' sticky='top' >
       <Navbar.Brand as={Link} to="/">Shopping Center</Navbar.Brand>
@@ -11,7 +11,7 @@ const NavBar = ({loggedIn}) => {
         <Nav className="mr-auto">
           <Nav.Link eventKey='1' as={Link} to="/">Home</Nav.Link>
           <Nav.Link eventKey='2' as={Link} to="/about">About</Nav.Link>
-          {loggedIn ?
+          {props.loggedIn ?
             <Nav.Link eventKey='3' as={Link} to="/logout">Logout</Nav.Link>
               :
             <Nav.Link eventKey='4' as={Link} to="/login">Login</Nav.Link>
@@ -22,4 +22,12 @@ const NavBar = ({loggedIn}) => {
     </Navbar>
   )
 }
-export default NavBar
+
+  const mapStateToProps = (state) => {
+    return {
+      loggedIn: state.user.logged_in
+    }
+  }
+
+
+export default connect(mapStateToProps, null)(NavBar)
