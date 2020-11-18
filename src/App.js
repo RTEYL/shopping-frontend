@@ -15,8 +15,8 @@ import SignUp from './components/SignUp'
 class App extends Component{
 
   componentDidMount(){
-    this.props.fetchItems()
     this.props.fetchLoggedInUser()
+    this.props.fetchItems()
   }
 
   render(){
