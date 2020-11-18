@@ -1,31 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { loginUser } from '../actions/Fetch';
 import Alert from 'react-bootstrap/Alert'
 
-class Login extends Component {
+class LoginForm extends Component {
 
   state = {
     email: '',
     password: ''
   };
 
-componentDidMount(){
-  console.log(this.props);
-}
-
-handleChange = (event) => {
+  handleChange = (event) => {
     const {name, value} = event.target
     this.setState({
       [name]: value
     })
   };
-handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault()
-    this.props.loginUser({user: this.state})
+    await this.props.loginUser({user: this.state})
+    this.props.history.push('/')
   };
-render() {
+  render() {
     const {email, password} = this.state
     return (
       <div>
@@ -74,4 +72,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export const Login =  withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
