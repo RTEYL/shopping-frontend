@@ -8,7 +8,7 @@ import NavBar from './components/NavBar'
 import {fetchItems, fetchLoggedInUser} from './actions/Fetch'
 import CartContainer from './containers/CartContainer'
 import {Login} from './components/Login';
-import Logout from './components/Logout';
+import {Logout} from './components/Logout';
 import CartForm from './components/CartForm';
 import SignUp from './components/SignUp'
 
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: state.user.logged_in
+    loggedIn: state.users.logged_in
   }
 }
 
