@@ -6,7 +6,6 @@ const initialState = {
 
 export default function UserReducer(state = initialState, { type, payload }){
   switch (type) {
-
   case 'IS_LOGGED_IN':
     return { ...state, user: payload.user,  logged_in: payload.logged_in }
   case 'LOG_IN':
