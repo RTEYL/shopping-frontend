@@ -1,19 +1,23 @@
 import cuid from 'cuid'
+import { Button, ListGroup } from 'react-bootstrap'
 
 const Cart = (props) => {
   return (
-    <div className='cart'>
+    <div className={'cart'}>
       {props.items.map((item) => (
-        <li key={cuid()}>
-            <p>{ item.count + 'X' } </p>
-            <p>{item.name} <button onClick={()=>props.removeFromCart(item)} >x</button></p>
-            <p>${item.price * item.count}</p>
-        </li>
+        <ListGroup variant="flush" key={cuid()}>
+          <ListGroup.Item>
+            {item.name}
+            <br/>
+             ${ item.price } x { item.count }
+             <Button size="sm" variant='danger' onClick={()=>props.removeFromCart(item)} >x</Button>
+              <p>Total ${item.price * item.count}</p>
+          </ListGroup.Item>
+        </ListGroup>
           )
         )
       }
     </div>
   )
 }
-
 export default Cart
