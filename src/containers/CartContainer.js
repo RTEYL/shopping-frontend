@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 import { removeFromCart, setActive } from '../actions/CartActions'
 import { Link, withRouter } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 class CartPage extends Component {
 
@@ -13,6 +14,13 @@ class CartPage extends Component {
      }
   }
 
+  cartTotal = (items) => {
+    let sum = items.reduce((a,b) => {
+      return a + (b.price * b.count)
+    }, 0)
+    return sum
+  }
+
   render() {
     return (
       <div className='cart-container'>
@@ -20,7 +28,7 @@ class CartPage extends Component {
           <>
             <Cart removeFromCart={this.props.removeFromCart} items={this.props.items}/>
             <Link to='/checkout'>
-              <button>Check Out</button>
+            <Button variant='success'>Check Out ${ this.cartTotal(this.props.items) }</Button>
             </Link>
           </>
         )}
