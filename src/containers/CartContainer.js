@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 import { removeFromCart, setActive } from '../actions/CartActions'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-class CartContainer extends Component {
+class CartPage extends Component {
 
   componentDidMount(){
     if (this.props.items.length === 0){
-      window.history.back()
+      this.props.history.goBack()
       return this.props.setActive(false)
      }
   }
@@ -43,4 +43,4 @@ const mapDispatchToProps =( dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartContainer)
+export const CartContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(CartPage))
