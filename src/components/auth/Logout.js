@@ -5,8 +5,8 @@ import {logoutUser} from '../../actions/Fetch'
 
 
 class LogoutForm extends Component{
-  componentDidMount = async () => {
-    await this.props.logoutUser()
+  componentDidMount(){
+    this.props.logoutUser()
     this.props.history.push('/')
   }
   render(){ return null }

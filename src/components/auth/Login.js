@@ -18,10 +18,9 @@ class LoginForm extends Component {
       [name]: value
     })
   };
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
-    await this.props.loginUser({user: this.state, history: this.props.history })
-    // this.props.history.push('/')
+    this.props.loginUser({user: this.state, history: this.props.history })
   };
   render() {
     const {email, password} = this.state
