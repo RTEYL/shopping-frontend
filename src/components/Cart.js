@@ -8,10 +8,11 @@ const Cart = (props) => {
         <ListGroup variant="flush" key={cuid()}>
           <ListGroup.Item>
             {item.name}
-            <br/>
-             ${ item.price } x { item.count }
              <Button size="sm" variant='danger' onClick={()=>props.removeFromCart(item)} >x</Button>
-              <p>Total ${item.price * item.count}</p>
+            <br/>
+            <p>${item.price * item.count + ' - '}
+            <small>{ item.count } x ${ item.price }</small>
+            </p>
           </ListGroup.Item>
         </ListGroup>
           )
