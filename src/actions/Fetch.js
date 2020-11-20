@@ -85,6 +85,13 @@ export const userSignUp = (payload) => {
 }
 
 export const checkout = (payload) => {
+  let url;
+  if (payload.user){
+    payload.order_data.user_id = payload.user.id
+    url = `http://localhost:3000/users/${payload.user.id}/orders`
+  }else{
+    url = `http://localhost:3000/guest/orders`
+  }
   let configObj = {
     credentials: 'include',
     method: "POST",
@@ -95,9 +102,10 @@ export const checkout = (payload) => {
     body: JSON.stringify(payload)
   };
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/${payload.user.id}/orders`,configObj)
+    fetch(url, configObj)
     .then(resp=>resp.json())
     .then(json=>{
+      debugger
       if (!!json.errors) {
          throw new Error().message = json.errors
       }else{
