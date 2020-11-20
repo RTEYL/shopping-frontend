@@ -83,3 +83,30 @@ export const userSignUp = (payload) => {
       })
   }
 }
+
+export const checkout = (payload) => {
+  let configObj = {
+    credentials: 'include',
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(payload)
+  };
+  return (dispatch) => {
+    fetch(`http://localhost:3000/users/${payload.user.id}/orders`,configObj)
+    .then(resp=>resp.json())
+    .then(json=>{
+      if (!!json.errors) {
+         throw new Error().message = json.errors
+      }else{
+        dispatch({type: 'CHECK_OUT', payload: json})
+        payload.history.push('/')
+      }
+    })
+    .catch(err =>{
+      debugger
+      })
+  }
+}
