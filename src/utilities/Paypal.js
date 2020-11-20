@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { checkout } from '../actions/Fetch'
 
 class PaypalBtn extends Component {
 
   render() {
-    const onSuccess = (payment) => {
-      console.log("The payment was succeeded!", payment);
+    const onSuccess = (data) => {
+      // this.props.checkout(data)
+      console.log("The payment was succeeded!", data);
     }
 
     const onCancel = (data) => {
@@ -39,4 +41,10 @@ class PaypalBtn extends Component {
   }
 }
 
-export const Paypal = withRouter(connect()(PaypalBtn))
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkout: data => dispatch(checkout(data))
+  }
+}
+
+export const Paypal = withRouter(connect(null, mapDispatchToProps)(PaypalBtn))
