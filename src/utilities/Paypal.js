@@ -7,8 +7,25 @@ import { checkout } from '../actions/Fetch'
 class PaypalBtn extends Component {
 
   render() {
+
+    const flattenObject = (obj) => {
+      const flattened = {}
+
+      Object.keys(obj).forEach((key) => {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+          Object.assign(flattened, flattenObject(obj[key]))
+        } else {
+          flattened[key] = obj[key]
+        }
+      })
+
+      return flattened
+    }
+
     const onSuccess = (data) => {
-      // this.props.checkout(data)
+
+
+      this.props.checkout({order_data: flattenObject(data), user: this.props.user})
       console.log("The payment was succeeded!", data);
     }
 
@@ -47,4 +64,14 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export const Paypal = withRouter(connect(null, mapDispatchToProps)(PaypalBtn))
+const mapStateToProps = (state) => {
+  if (state.users.loggedIn) {
+    return{
+      user: state.users.user
+    }
+  }else{
+    return{user: null}
+  }
+}
+
+export const Paypal = withRouter(connect(mapStateToProps, mapDispatchToProps)(PaypalBtn))
