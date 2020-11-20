@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 import { removeFromCart, setActive } from '../actions/CartActions'
 import { Link, withRouter } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
+import Paypal from '../utilities/Paypal'
 
 class CartPage extends Component {
 
@@ -22,14 +23,18 @@ class CartPage extends Component {
   }
 
   render() {
+    const totalCost = this.cartTotal(this.props.items)
     return (
       <div className='cart-container'>
         {this.props.cartIsActive && (
           <>
             <Cart removeFromCart={this.props.removeFromCart} items={this.props.items}/>
-            <Link to='/checkout'>
+              <h5>Total - ${totalCost}</h5>
+            <Paypal totalCost={totalCost} />
+
+            {/* <Link to='/checkout'>
             <Button variant='success'>Check Out ${ this.cartTotal(this.props.items) }</Button>
-            </Link>
+            </Link> */}
           </>
         )}
       </div>
