@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps =( dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     removeFromCart: item => dispatch(removeFromCart(item)),
     setActive: bool => dispatch(setActive(bool))
