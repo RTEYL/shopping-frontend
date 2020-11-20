@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Cart from '../components/Cart'
 import { removeFromCart, setActive } from '../actions/CartActions'
-import { Link, withRouter } from 'react-router-dom'
-// import { Button } from 'react-bootstrap'
-import Paypal from '../utilities/Paypal'
+import {Paypal} from '../utilities/Paypal'
 
 class CartPage extends Component {
 
@@ -15,26 +14,22 @@ class CartPage extends Component {
      }
   }
 
-  cartTotal = (items) => {
-    let sum = items.reduce((a,b) => {
+  render() {
+    const cartTotal = this.props.items.reduce((a,b) => {
       return a + (b.price * b.count)
     }, 0)
-    return sum
-  }
-
-  render() {
-    const totalCost = this.cartTotal(this.props.items)
+    const cartTax = (cartTotal * (7.5/100))
+    const totalCost = (cartTotal + cartTax)
     return (
       <div className='cart-container'>
         {this.props.cartIsActive && (
           <>
             <Cart removeFromCart={this.props.removeFromCart} items={this.props.items}/>
-              <h5>Total - ${totalCost}</h5>
-            <Paypal totalCost={totalCost} />
-
-            {/* <Link to='/checkout'>
-            <Button variant='success'>Check Out ${ this.cartTotal(this.props.items) }</Button>
-            </Link> */}
+            <small>Total - ${cartTotal.toFixed(2)}</small>
+            <br/>
+            <small>Tax - ${cartTax.toFixed(2)}</small>
+            <h5>Total Cost - ${totalCost}</h5>
+            <Paypal user={this.props.user} totalCost={totalCost} items={this.props.items} />
           </>
         )}
       </div>
@@ -44,7 +39,8 @@ class CartPage extends Component {
 const mapStateToProps = (state) => {
   return{
     items: state.cart.items,
-    cartIsActive: state.cart.active
+    cartIsActive: state.cart.active,
+    user: state.users.user
   }
 }
 
