@@ -7,11 +7,13 @@ import CartReducer from './reducers/CartReducer'
 import ItemsReducer from './reducers/ItemsReducer';
 import thunk from 'redux-thunk'
 import UserReducer from './reducers/UserReducer';
+import OrdersReducer from './reducers/OrdersReducer';
 
 const rootReducer = combineReducers({
   cart: CartReducer,
   products: ItemsReducer,
-  users: UserReducer
+  users: UserReducer,
+  orders: OrdersReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
