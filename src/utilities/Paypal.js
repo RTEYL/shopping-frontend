@@ -23,7 +23,7 @@ class PaypalBtn extends Component {
     }
 
     const onSuccess = (data) => {
-      this.props.checkout({order_data: flattenObject(data), user: this.props.user})
+      this.props.checkout({order_data: flattenObject(data), user: this.props.user, history: this.props.history})
       console.log("The payment was succeeded!", data);
     }
 
@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  if (state.users.loggedIn) {
+  if (state.users.logged_in) {
     return{
       user: state.users.user
     }

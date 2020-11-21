@@ -87,8 +87,7 @@ export const userSignUp = (payload) => {
 export const checkout = (payload) => {
   let url;
   if (payload.user){
-    payload.order_data.user_id = payload.user.id
-    url = `http://localhost:3000/users/${payload.user.id}/orders`
+    url = `http://localhost:3000/api/v1/users/${payload.user.id}/orders`
   }else{
     url = `http://localhost:3000/guest/orders`
   }
@@ -105,13 +104,15 @@ export const checkout = (payload) => {
     fetch(url, configObj)
     .then(resp=>resp.json())
     .then(json=>{
-      debugger
       if (!!json.errors) {
          throw new Error().message = json.errors
       }else{
         dispatch({type: 'CHECK_OUT', payload: json})
         dispatch({type: 'CREATE_ORDER', payload: json.order})
-        payload.history.push('/')
+        payload.user ?
+          payload.history.push(`/users/${payload.user.id}/orders`)
+          :
+          payload.history.push('/')
       }
     })
     .catch(err =>{
