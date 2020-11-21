@@ -7,8 +7,8 @@ const NavBar = (props) => {
     if(loggedIn){
       return (
         <>
-          <Nav.Link eventKey='3' as={Link} to="/logout">Logout</Nav.Link>
           <Nav.Link eventKey='6' as={Link} to={`/users/${props.user.id}/orders`}>My Orders</Nav.Link>
+          <Nav.Link eventKey='3' as={Link} to="/logout">Logout</Nav.Link>
         </>
       )
     }else{
@@ -25,10 +25,10 @@ const NavBar = (props) => {
         <Nav defaultActiveKey='/' className="mr-auto">
           <Nav.Link eventKey='1' as={Link} to="/">Home</Nav.Link>
           <Nav.Link eventKey='2' as={Link} to="/about">About</Nav.Link>
-          {renderLinks(props.loggedIn)}
           <Nav.Link eventKey='5' as={Link} to="/cart">
             Cart <Badge variant="dark">{props.cartItemCount}</Badge>
             </Nav.Link>
+          {renderLinks(props.loggedIn)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
