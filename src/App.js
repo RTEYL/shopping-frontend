@@ -10,6 +10,7 @@ import {CartContainer} from './containers/CartContainer'
 import {Login} from './components/auth/Login';
 import {Logout} from './components/auth/Logout';
 import {SignUp} from './components/auth/SignUp'
+import OrdersContainer from './containers/OrdersContainer'
 
 class App extends Component{
 
@@ -30,6 +31,7 @@ class App extends Component{
               <Route exact path='/login' component={Login}/>
               <Route exact path='/logout' component={Logout}/>
               <Route exact path='/signup' component={SignUp}/>
+              <Route path='/users/:id/orders' component={OrdersContainer} />
             </Switch>
           </Container>
       </Router>
