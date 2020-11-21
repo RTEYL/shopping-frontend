@@ -23,8 +23,6 @@ class PaypalBtn extends Component {
     }
 
     const onSuccess = (data) => {
-
-
       this.props.checkout({order_data: flattenObject(data), user: this.props.user})
       console.log("The payment was succeeded!", data);
     }
@@ -39,7 +37,7 @@ class PaypalBtn extends Component {
 
     let env = 'sandbox';
     let currency = 'USD';
-    let total = parseFloat(this.props.totalCost); // same as above,
+    let total = parseFloat(this.props.totalCost);
 
     const client = {
       sandbox: 'AS-aaifKXn75sDULqrUD-RoxnbqUKbx1e_9MpexsFZ2alQmPNCdJy5KfuuGkR2H8oUNpdS2_7wb1fuZE',
