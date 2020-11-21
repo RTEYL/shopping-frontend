@@ -38,7 +38,7 @@ export const loginUser = (payload) => {
       }
     })
     .catch(err =>{
-      dispatch({type: 'AUTH_ERROR', payload: err})
+      dispatch({type: 'ADD_ERROR', payload: err})
     })
   }
 }
@@ -79,7 +79,7 @@ export const userSignUp = (payload) => {
       }
     })
     .catch(err =>{
-      dispatch({type: 'AUTH_ERROR', payload: err})
+      dispatch({type: 'ADD_ERROR', payload: err})
       })
   }
 }
@@ -110,11 +110,12 @@ export const checkout = (payload) => {
          throw new Error().message = json.errors
       }else{
         dispatch({type: 'CHECK_OUT', payload: json})
+        dispatch({type: 'CREATE_ORDER', payload: json.order})
         payload.history.push('/')
       }
     })
     .catch(err =>{
-      debugger
+      dispatch({type: 'ADD_ERROR', payload: err})
       })
   }
 }
