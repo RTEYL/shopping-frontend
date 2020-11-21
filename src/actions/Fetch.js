@@ -33,6 +33,7 @@ export const loginUser = (payload) => {
       if (!!json.errors) {
          throw new Error().message = json.errors
       }else{
+        dispatch(fetchOrders(json.user))
         dispatch({type: 'LOG_IN', payload: json})
         payload.history.push('/')
       }
@@ -114,6 +115,29 @@ export const checkout = (payload) => {
           :
           payload.history.push('/')
       }
+    })
+    .catch(err =>{
+      dispatch({type: 'ADD_ERROR', payload: err})
+      })
+  }
+}
+
+export const fetchOrders = (user) => {
+  let configObj = {
+    credentials: 'include',
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  };
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/users/${user.id}/orders`,configObj)
+    .then(resp=>resp.json())
+    .then(json=>{
+        if (json.status === 201) {
+          dispatch({type: 'CREATE_ORDER', payload: json.orders})
+        }
     })
     .catch(err =>{
       dispatch({type: 'ADD_ERROR', payload: err})
