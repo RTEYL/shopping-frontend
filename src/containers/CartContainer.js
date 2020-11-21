@@ -28,7 +28,7 @@ class CartPage extends Component {
             <small>Total - ${cartTotal.toFixed(2)}</small>
             <br/>
             <small>Tax - ${cartTax.toFixed(2)}</small>
-            <h5>Total Cost - ${totalCost}</h5>
+            <h5>Total Cost - ${totalCost.toFixed(2)}</h5>
             <Paypal user={this.props.user} totalCost={totalCost} items={this.props.items} />
           </>
         )}
