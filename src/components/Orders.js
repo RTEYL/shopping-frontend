@@ -1,10 +1,16 @@
-import React from 'react'
+import Order from '../components/Order'
 
-const Orders = () => {
+const Orders = (props) => {
+  const renderOrders = () => {
+    return props.orders.map(order=>{
+      return <Order key={order.id} order={order} />
+    })
+  }
   return (
-    <div>
-
-    </div>
+    <>
+    orders
+      {renderOrders()}
+    </>
   )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Order = () => {
+const Order = (props) => {
   return (
-    <div>
-
+    <div className='order'>
+      order
+      {props.order.id}
     </div>
   )
 }
