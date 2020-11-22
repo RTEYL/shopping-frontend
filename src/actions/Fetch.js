@@ -135,9 +135,9 @@ export const fetchOrders = (user) => {
     fetch(`http://localhost:3000/api/v1/users/${user.id}/orders`,configObj)
     .then(resp=>resp.json())
     .then(json=>{
-        if (json.status === 201) {
-          dispatch({type: 'CREATE_ORDER', payload: json.orders})
-        }
+      if (json.status === 201) {
+        dispatch({type: 'CREATE_ORDER', payload: json.orders})
+      }
     })
     .catch(err =>{
       dispatch({type: 'ADD_ERROR', payload: err})

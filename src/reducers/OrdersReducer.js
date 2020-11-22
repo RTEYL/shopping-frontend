@@ -5,8 +5,7 @@ const initialState = {
 export default function OrdersReducer (state = initialState, { type, payload }){
   switch (type) {
 
-  case 'CREATE_ORDER':
-    debugger
+    case 'CREATE_ORDER':
     return { ...state,
        completedOrders: state.completedOrders.concat(payload)
       }
