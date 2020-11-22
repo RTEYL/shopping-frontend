@@ -33,6 +33,7 @@ export default function cartReducer(state = initialState, { type, payload }){
       return {...state, active: payload}
 
     case 'CHECK_OUT':
+      [...state.items].map((i) => i.count = 0)
       return {...state, items: [], itemCount: null, active: false}
   default:
     return state
