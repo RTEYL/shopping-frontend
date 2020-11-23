@@ -21,7 +21,7 @@ export default function cartReducer(state = initialState, { type, payload }){
 
     case 'REMOVE_FROM_CART':
       if (payload.count === 1) {
-        payload.count -=1
+        payload.count = 0
         return {...state, items: state.items.filter(item=>item.id !== payload.id), itemCount: state.itemCount - 1}
       }else{
         i = state.items.indexOf(payload)

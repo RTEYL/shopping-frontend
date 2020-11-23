@@ -9,8 +9,8 @@ class CartPage extends Component {
 
   componentDidMount(){
     if (this.props.items.length === 0){
+      this.props.setActive(false)
       this.props.history.goBack()
-      return this.props.setActive(false)
      }
   }
 
