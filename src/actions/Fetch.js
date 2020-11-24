@@ -87,6 +87,7 @@ export const userSignUp = (payload) => {
 
 export const checkout = (payload) => {
   let url;
+  payload.order_data.purchase_date = new Date().toLocaleDateString()
   if (payload.user){
     url = `http://localhost:3000/api/v1/users/${payload.user.id}/orders`
   }else{
