@@ -9,9 +9,9 @@ export default function UserReducer(state = initialState, { type, payload }){
   case 'IS_LOGGED_IN':
     return { ...state, user: payload.user,  logged_in: payload.logged_in }
   case 'LOG_IN':
-    return { ...state, user: payload.user, logged_in: payload.logged_in }
+    return { ...state, user: payload.user, logged_in: payload.logged_in, errors: '' }
   case 'LOG_OUT':
-    return { ...state, user: {}, logged_in: false }
+    return { ...state, user: {}, logged_in: false, errors: '' }
   case 'ADD_ERROR':
     return { ...state, errors: payload}
   case 'REMOVE_ERRORS':
