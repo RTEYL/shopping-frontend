@@ -20,6 +20,26 @@ class App extends Component {
     this.props.fetchItems();
   }
 
+  renderAdminRoutes = () => {
+    if (this.props.user.admin) {
+      return (
+        <>
+          <Route
+            exact
+            path="/admin"
+            render={(props) => <AdminContainer {...props} />}
+          />
+          <Route
+            path="/admin/items/:itemId"
+            render={(props) => <ItemForm {...props} />}
+          />
+        </>
+      );
+    } else {
+      return;
+    }
+  };
+
   render() {
     return (
       <>
@@ -27,19 +47,7 @@ class App extends Component {
           <NavBar />
           <Container>
             <Switch>
-              {this.props.user.admin && (
-                <>
-                  <Route
-                    exact
-                    path="/admin"
-                    render={(props) => <AdminContainer {...props} />}
-                  />
-                  <Route
-                    path="/admin/items/:itemId"
-                    render={(props) => <ItemForm {...props} />}
-                  />
-                </>
-              )}
+              {this.renderAdminRoutes}
               <Route exact path="/" component={ItemsContainer} />
               <Route exact path="/cart" component={CartContainer} />
               <Route exact path="/login" component={Login} />
