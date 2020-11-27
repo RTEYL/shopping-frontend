@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import AdminContainer from "../../containers/AdminContainer";
-import ItemForm from "./ItemForm";
+import ItemEdit from "./ItemEdit";
 
 class AdminRoutes extends Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ class AdminRoutes extends Component {
         />
         <Route
           path="/admin/items/:itemId"
-          render={(props) => <ItemForm {...props} />}
+          render={(props) => <ItemEdit {...props} />}
         />
       </>
     );

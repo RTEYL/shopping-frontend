@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { updateItem } from "../../actions/AdminActions";
 
-class ItemForm extends Component {
+class ItemEdit extends Component {
   state = {
     item: {
       name: "",
@@ -143,5 +143,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ItemForm)
+  connect(mapStateToProps, mapDispatchToProps)(ItemEdit)
 );
