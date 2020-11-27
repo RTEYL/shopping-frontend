@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import AdminContainer from "../../containers/AdminContainer";
+import ItemCreate from "./ItemCreate";
 import ItemEdit from "./ItemEdit";
 
 class AdminRoutes extends Component {
@@ -22,6 +23,10 @@ class AdminRoutes extends Component {
         <Route
           path="/admin/items/:itemId"
           render={(props) => <ItemEdit {...props} />}
+        />
+        <Route
+          path="/admin/items/create"
+          render={(props) => <ItemCreate {...props} />}
         />
       </>
     );
