@@ -6,39 +6,18 @@ import Container from "react-bootstrap/Container";
 import ItemsContainer from "./containers/ItemsContainer";
 import { CartContainer } from "./containers/CartContainer";
 import OrdersContainer from "./containers/OrdersContainer";
-import AdminContainer from "./containers/AdminContainer";
 import NavBar from "./components/NavBar";
-import ItemForm from "./components/admin/ItemForm";
 import { Login } from "./components/auth/Login";
 import { Logout } from "./components/auth/Logout";
 import { SignUp } from "./components/auth/SignUp";
 import { fetchItems, fetchLoggedInUser } from "./actions/Fetch";
+import AdminRoutes from "./components/admin/AdminRoutes";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchLoggedInUser();
     this.props.fetchItems();
   }
-
-  renderAdminRoutes = () => {
-    if (this.props.user.admin) {
-      return (
-        <>
-          <Route
-            exact
-            path="/admin"
-            render={(props) => <AdminContainer {...props} />}
-          />
-          <Route
-            path="/admin/items/:itemId"
-            render={(props) => <ItemForm {...props} />}
-          />
-        </>
-      );
-    } else {
-      return;
-    }
-  };
 
   render() {
     return (
@@ -47,13 +26,18 @@ class App extends Component {
           <NavBar />
           <Container>
             <Switch>
-              {this.renderAdminRoutes}
               <Route exact path="/" component={ItemsContainer} />
               <Route exact path="/cart" component={CartContainer} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
               <Route exact path="/signup" component={SignUp} />
               <Route path="/users/:id/orders" component={OrdersContainer} />
+              <Route
+                path="/admin"
+                render={(props) => (
+                  <AdminRoutes {...props} admin={this.props.user.admin} />
+                )}
+              />
               <Route component={ItemsContainer} />
             </Switch>
           </Container>
