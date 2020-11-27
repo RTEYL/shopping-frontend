@@ -10,8 +10,9 @@ import NavBar from "./components/NavBar";
 import { Login } from "./components/auth/Login";
 import { Logout } from "./components/auth/Logout";
 import { SignUp } from "./components/auth/SignUp";
-import { fetchItems, fetchLoggedInUser } from "./actions/Fetch";
 import AdminRoutes from "./components/admin/AdminRoutes";
+import { fetchLoggedInUser } from "./actions/Fetch";
+import { fetchItems } from "./actions/ItemActions";
 
 class App extends Component {
   componentDidMount() {
