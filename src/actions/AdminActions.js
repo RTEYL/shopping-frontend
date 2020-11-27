@@ -15,20 +15,22 @@ export const deleteItem = (item) => {
       });
   };
 };
-export const fetchItem = (itemId) => {
+export const updateItem = ({ item, history }) => {
   let configObj = {
     credentials: "include",
-    method: "get",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
+    body: JSON.stringify(item),
   };
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/v1/items/${itemId}`, configObj)
+    fetch(`http://localhost:3000/api/v1/items/${item.id}`, configObj)
       .then((resp) => resp.json())
       .then((json) => {
-        debugger;
+        dispatch({ type: "UPDATE_ITEM", payload: item });
+        history.push("/admin");
       });
   };
 };
