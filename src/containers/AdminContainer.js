@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import ItemsList from "../components/admin/ItemsList";
 
 class AdminContainer extends Component {
@@ -8,10 +7,4 @@ class AdminContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.products.items,
-  };
-};
-
-export default connect(mapStateToProps, null)(AdminContainer);
+export default AdminContainer;
