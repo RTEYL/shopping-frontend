@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import ItemsList from "../components/admin/ItemsList";
 
-class AdminContainer extends Component {
-  render() {
-    return <ItemsList {...this.props} />;
-  }
-}
+const AdminContainer = (props) => {
+  return <ItemsList {...props} />;
+};
 
 export default AdminContainer;
