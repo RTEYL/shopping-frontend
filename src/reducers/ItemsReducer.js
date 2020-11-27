@@ -15,10 +15,9 @@ export default function itemsReducer(state = initialState, { type, payload }) {
       const i = state.items.indexOf(item);
       return {
         ...state,
-        items: {
-          ...state.items,
-          [i]: payload,
-        },
+        items: state.items.map((item) =>
+          state.items[i] === item ? (item = payload) : item
+        ),
       };
 
     case "DELETE_ITEM":
