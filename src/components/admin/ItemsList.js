@@ -11,6 +11,7 @@ const ItemsList = (props) => {
           <th>id</th>
           <th>Item Name</th>
           <th>Brand Name</th>
+          <th>Category</th>
           <th>Description</th>
           <th>Price</th>
           <th>Image Url</th>
@@ -40,6 +41,7 @@ const ItemsList = (props) => {
               </td>
               <td>{i.name}</td>
               <td>{i.brand}</td>
+              <td>{i.category}</td>
               <td>{i.description}</td>
               <td>{i.price}</td>
               <td>{i.image}</td>
