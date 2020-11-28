@@ -14,7 +14,7 @@ const ItemsList = (props) => {
               <br />
               <Button
                 onClick={() => {
-                  props.history.push(`/admin/items/${i.id}`);
+                  props.history.push(`/admin/items/${i.id}/edit`);
                 }}
                 size="sm"
                 variant="warning">

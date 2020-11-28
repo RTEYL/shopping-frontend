@@ -21,12 +21,13 @@ class AdminRoutes extends Component {
           )}
         />
         <Route
-          path="/admin/items/:itemId"
-          render={(props) => <ItemEdit {...props} />}
-        />
-        <Route
+          exact
           path="/admin/items/create"
           render={(props) => <ItemCreate {...props} />}
+        />
+        <Route
+          path="/admin/items/:itemId/edit"
+          render={(props) => <ItemEdit {...props} />}
         />
       </>
     );
