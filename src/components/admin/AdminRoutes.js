@@ -4,6 +4,8 @@ import { Route } from "react-router-dom";
 import AdminContainer from "../../containers/AdminContainer";
 import ItemCreate from "./ItemCreate";
 import ItemEdit from "./ItemEdit";
+import UserCreate from "./UserCreate";
+import UserEdit from "./UserEdit";
 
 class AdminRoutes extends Component {
   componentDidMount() {
@@ -28,6 +30,14 @@ class AdminRoutes extends Component {
         <Route
           path="/admin/items/:itemId/edit"
           render={(props) => <ItemEdit {...props} />}
+        />
+        <Route
+          path="/admin/users/create"
+          render={(props) => <UserCreate {...props} />}
+        />
+        <Route
+          path="/admin/items/:userId/edit"
+          render={(props) => <UserEdit {...props} />}
         />
       </>
     );
