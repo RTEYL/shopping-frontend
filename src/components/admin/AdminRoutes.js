@@ -32,11 +32,12 @@ class AdminRoutes extends Component {
           render={(props) => <ItemEdit {...props} />}
         />
         <Route
+          exact
           path="/admin/users/create"
           render={(props) => <UserCreate {...props} />}
         />
         <Route
-          path="/admin/items/:userId/edit"
+          path="/admin/users/:userId/edit"
           render={(props) => <UserEdit {...props} />}
         />
       </>

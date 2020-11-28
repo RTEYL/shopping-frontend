@@ -53,7 +53,7 @@ class UsersList extends Component {
               <br />
               <Button
                 onClick={() => {
-                  this.props.history.push(`/admin/user/${u.id}/edit`);
+                  this.props.history.push(`/admin/users/${u.id}/edit`);
                 }}
                 size="sm"
                 variant="warning">
