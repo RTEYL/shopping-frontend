@@ -1,4 +1,4 @@
-import Order from "../components/Order";
+import Order from "./Order";
 
 const Orders = (props) => {
   const renderOrders = () => {

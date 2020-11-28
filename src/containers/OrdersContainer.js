@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchOrders } from "../actions/OrderActions";
-import Orders from "../components/Orders";
+import Orders from "../components/orders/Orders";
 
 class OrdersContainer extends Component {
   render() {

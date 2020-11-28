@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Items from "../components/Items";
+import Items from "../components/items/Items";
 import { addToCart } from "../actions/CartActions";
 import { Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { sortByPrice } from "../actions/ItemActions";
