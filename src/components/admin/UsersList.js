@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Button, Table } from "react-bootstrap";
+import SearchBar from "../../utilities/SearchBar";
 
 class UsersList extends Component {
   state = {
     users: [],
+    searchTerm: "",
   };
 
   componentDidMount = () => {
@@ -44,7 +46,11 @@ class UsersList extends Component {
   };
 
   renderUsers = () => {
-    return this.state.users.map((u) => {
+    const { users, searchTerm } = this.state;
+    const filteredUsers = users.filter((user) =>
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return filteredUsers.map((u) => {
       return (
         <tbody key={u.id}>
           <tr>
@@ -74,18 +80,28 @@ class UsersList extends Component {
     });
   };
 
+  handleSearch = (event) => {
+    this.setState({
+      ...this.state,
+      searchTerm: event.target.value,
+    });
+  };
+
   render() {
     return (
-      <Table responsive striped bordered>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>Admin?</th>
-          </tr>
-        </thead>
-        {this.renderUsers()}
-      </Table>
+      <>
+        <SearchBar placeholder="Filter Users" onChange={this.handleSearch} />
+        <Table responsive striped bordered>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>email</th>
+              <th>Admin?</th>
+            </tr>
+          </thead>
+          {this.renderUsers()}
+        </Table>
+      </>
     );
   }
 }
