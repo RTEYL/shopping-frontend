@@ -2,27 +2,65 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Items from "../components/items/Items";
 import { addToCart } from "../actions/CartActions";
-import { Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { sortByPrice } from "../actions/ItemActions";
+import SearchBar from "../utilities/SearchBar";
 
 class ItemsContainer extends Component {
+  state = {
+    searchTerm: "",
+  };
+
   handleClick = (event) => {
     this.props.sortByPrice(this.props.items, event.target.value);
+  };
+
+  handleSearch = (event) => {
+    this.setState({
+      ...this.state,
+      searchTerm: event.target.value,
+    });
+  };
+
+  filterItems = () => {
+    const { searchTerm } = this.state;
+    const filteredItems = this.props.items.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return filteredItems;
   };
 
   render() {
     return (
       <Container className="items-container">
-        <DropdownButton id="dropdown-item-button" title="Sort By: ">
-          <Dropdown.Item onClick={this.handleClick} as="button" value="lowest">
-            price - lowest
-          </Dropdown.Item>
-          <Dropdown.Item onClick={this.handleClick} as="button" value="highest">
-            price - highest
-          </Dropdown.Item>
-        </DropdownButton>
         <Row>
-          <Items addToCart={this.props.addToCart} items={this.props.items} />
+          <SearchBar
+            placeholder="Search Items..."
+            onChange={this.handleSearch}
+          />
+          <DropdownButton id="dropdown-item-button" title="Sort By: ">
+            <Dropdown.Item
+              onClick={this.handleClick}
+              as="button"
+              value="default">
+              Clear Filter
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={this.handleClick}
+              as="button"
+              value="lowest">
+              price - lowest
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={this.handleClick}
+              as="button"
+              value="highest">
+              price - highest
+            </Dropdown.Item>
+          </DropdownButton>
+        </Row>
+        <Row>
+          <Items addToCart={this.props.addToCart} items={this.filterItems()} />
         </Row>
       </Container>
     );
