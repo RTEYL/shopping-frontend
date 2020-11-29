@@ -1,11 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { deleteItem } from "../../actions/AdminActions";
+import SearchBar from "../../utilities/SearchBar";
 
-const ItemsList = (props) => {
-  const renderItems = () => {
-    return props.items.map((i) => {
+class ItemsList extends Component {
+  state = {
+    items: [],
+    searchTerm: "",
+  };
+
+  componentDidMount() {
+    this.setState({
+      ...this.state,
+      items: this.props.items,
+    });
+  }
+
+  renderItems = () => {
+    const { items, searchTerm } = this.state;
+    const filteredItems = items.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return filteredItems.map((i) => {
       return (
         <tbody key={i.id}>
           <tr>
@@ -14,14 +31,14 @@ const ItemsList = (props) => {
               <br />
               <Button
                 onClick={() => {
-                  props.history.push(`/admin/items/${i.id}/edit`);
+                  this.props.history.push(`/admin/items/${i.id}/edit`);
                 }}
                 size="sm"
                 variant="warning">
                 Edit
               </Button>
               <Button
-                onClick={() => props.deleteItem(i)}
+                onClick={() => this.props.deleteItem(i)}
                 size="sm"
                 variant="danger">
                 Delete
@@ -39,22 +56,43 @@ const ItemsList = (props) => {
     });
   };
 
-  return (
-    <Table responsive striped bordered>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Item Name</th>
-          <th>Brand Name</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Image Url</th>
-        </tr>
-      </thead>
-      {renderItems()}
-    </Table>
-  );
+  handleSearch = (event) => {
+    this.setState({
+      ...this.state,
+      searchTerm: event.target.value,
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <SearchBar
+          placeholder="Filter by item name"
+          onChange={this.handleSearch}
+        />
+        <Table responsive striped bordered>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Item Name</th>
+              <th>Brand Name</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Image Url</th>
+            </tr>
+          </thead>
+          {this.renderItems()}
+        </Table>
+      </>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.products.items,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -63,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ItemsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
