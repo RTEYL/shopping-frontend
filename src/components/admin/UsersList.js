@@ -90,7 +90,10 @@ class UsersList extends Component {
   render() {
     return (
       <>
-        <SearchBar placeholder="Filter Users" onChange={this.handleSearch} />
+        <SearchBar
+          placeholder="Filter by Users Email"
+          onChange={this.handleSearch}
+        />
         <Table responsive striped bordered>
           <thead>
             <tr>
