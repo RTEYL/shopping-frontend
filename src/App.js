@@ -13,6 +13,7 @@ import { SignUp } from "./components/auth/SignUp";
 import AdminRoutes from "./components/admin/AdminRoutes";
 import { fetchLoggedInUser } from "./actions/Fetch";
 import { fetchItems } from "./actions/ItemActions";
+import About from "./components/About";
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/logout" component={Logout} />
               <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/about" component={About} />
               <Route path="/users/:id/orders" component={OrdersContainer} />
               <Route
                 path="/admin"
