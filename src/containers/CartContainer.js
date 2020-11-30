@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Cart from "../components/Cart";
+import Cart from "../components/orders/Cart";
 import { removeFromCart, setActive } from "../actions/CartActions";
 import { Paypal } from "../utilities/Paypal";
 
