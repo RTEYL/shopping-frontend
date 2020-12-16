@@ -6,6 +6,8 @@ import { checkout } from "../actions/OrderActions";
 
 class PaypalBtn extends Component {
   render() {
+    const ppalKey = process.env.REACT_APP_PAYPAL_SANDBOX_KEY;
+
     const flattenObject = (obj) => {
       const flattened = {};
 
@@ -40,10 +42,8 @@ class PaypalBtn extends Component {
     let env = "sandbox";
     let currency = "USD";
     let total = parseFloat(this.props.totalCost);
-
     const client = {
-      sandbox:
-        "AS-aaifKXn75sDULqrUD-RoxnbqUKbx1e_9MpexsFZ2alQmPNCdJy5KfuuGkR2H8oUNpdS2_7wb1fuZE",
+      sandbox: ppalKey,
       production: "YOUR-PRODUCTION-APP-ID",
     };
 
