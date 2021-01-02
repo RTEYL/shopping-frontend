@@ -1,7 +1,9 @@
 import { fetchOrders } from "./OrderActions";
 export const fetchLoggedInUser = () => {
   return async (dispatch) => {
-    fetch("http://localhost:3000/logged_in", { credentials: "include" })
+    fetch("https://shopping-center-api.herokuapp.com/logged_in", {
+      credentials: "include",
+    })
       .then((resp) => resp.json())
       .then((json) => dispatch({ type: "IS_LOGGED_IN", payload: json }))
       .catch((err) => console.log("fetch error", err));
@@ -19,7 +21,7 @@ export const loginUser = (payload) => {
     body: JSON.stringify(payload),
   };
   return (dispatch) => {
-    fetch("http://localhost:3000/login", configObj)
+    fetch("https://shopping-center-api.herokuapp.com/login", configObj)
       .then((resp) => resp.json())
       .then((json) => {
         if (!!json.errors) {
@@ -38,7 +40,7 @@ export const loginUser = (payload) => {
 
 export const logoutUser = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/logout", {
+    fetch("https://shopping-center-api.herokuapp.com/logout", {
       credentials: "include",
       method: "POST",
       headers: {
@@ -62,7 +64,7 @@ export const userSignUp = (payload) => {
     body: JSON.stringify(payload),
   };
   return (dispatch) => {
-    fetch("http://localhost:3000/sign_up", configObj)
+    fetch("https://shopping-center-api.herokuapp.com/sign_up", configObj)
       .then((resp) => resp.json())
       .then((json) => {
         if (!!json.errors) {

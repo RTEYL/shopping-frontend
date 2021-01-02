@@ -29,7 +29,7 @@ class UserCreate extends Component {
       },
       body: JSON.stringify({ user: this.state }),
     };
-    fetch("http://localhost:3000/api/v1/users", configObj)
+    fetch("https://shopping-center-api.herokuapp.com/api/v1/users", configObj)
       .then((resp) => resp.json())
       .then((json) => {
         if (!!json.errors) {

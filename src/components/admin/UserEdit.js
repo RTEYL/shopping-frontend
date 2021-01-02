@@ -12,7 +12,7 @@ class UserEdit extends Component {
 
   componentDidMount() {
     fetch(
-      `http://localhost:3000/api/v1/users/${this.props.match.params.userId}`,
+      `https://shopping-center-api.herokuapp.com/api/v1/users/${this.props.match.params.userId}`,
       {
         credentials: "include",
         headers: {
@@ -28,15 +28,18 @@ class UserEdit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`, {
-      credentials: "include",
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(this.state),
-    })
+    fetch(
+      `https://shopping-center-api.herokuapp.com/api/v1/users/${this.state.user.id}`,
+      {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(this.state),
+      }
+    )
       .then((resp) => resp.json())
       .then((json) => {
         this.props.history.push("/admin");

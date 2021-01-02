@@ -8,7 +8,10 @@ export const deleteItem = (item) => {
     },
   };
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/v1/items/${item.id}`, configObj)
+    fetch(
+      `https://shopping-center-api.herokuapp.com/api/v1/items/${item.id}`,
+      configObj
+    )
       .then((resp) => resp.json())
       .then((json) => {
         dispatch({ type: "DELETE_ITEM", payload: item });

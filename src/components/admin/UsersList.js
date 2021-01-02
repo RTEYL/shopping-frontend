@@ -9,7 +9,7 @@ class UsersList extends Component {
   };
 
   componentDidMount = () => {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://shopping-center-api.herokuapp.com/api/v1/users", {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ class UsersList extends Component {
   };
 
   deleteUser = (user) => {
-    fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+    fetch(`https://shopping-center-api.herokuapp.com/api/v1/users/${user.id}`, {
       credentials: "include",
       method: "DELETE",
       headers: {
