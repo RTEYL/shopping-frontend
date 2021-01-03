@@ -28,15 +28,15 @@ class PaypalBtn extends Component {
         user: this.props.user,
         history: this.props.history,
       });
-      console.log("The payment was succeeded!", data);
+      alert("The payment was succeeded!");
     };
 
     const onCancel = (data) => {
-      console.log("The payment was cancelled!", data);
+      alert("The payment was cancelled!");
     };
 
     const onError = (err) => {
-      console.log("Error!", err);
+      alert("Error!", err);
     };
 
     let env = "sandbox";
@@ -44,7 +44,6 @@ class PaypalBtn extends Component {
     let total = parseFloat(this.props.totalCost);
     const client = {
       sandbox: ppalKey,
-      production: "YOUR-PRODUCTION-APP-ID",
     };
 
     const style = {
