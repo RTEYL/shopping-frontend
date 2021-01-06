@@ -29,7 +29,10 @@ export const updateItem = ({ item, history }) => {
     body: JSON.stringify(item),
   };
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/v1/items/${item.id}`, configObj)
+    fetch(
+      `https://shopping-center-api.herokuapp.com/api/v1/items/${item.id}`,
+      configObj
+    )
       .then((resp) => resp.json())
       .then((json) => {
         dispatch({ type: "UPDATE_ITEM", payload: item });
@@ -48,7 +51,7 @@ export const createItem = ({ item, history }) => {
     body: JSON.stringify(item),
   };
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/items", configObj)
+    fetch("https://shopping-center-api.herokuapp.com/api/v1/items", configObj)
       .then((resp) => resp.json())
       .then((json) => {
         dispatch({ type: "ADD_ITEM", payload: json.item });
