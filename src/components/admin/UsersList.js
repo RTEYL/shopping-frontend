@@ -4,7 +4,7 @@ import SearchBar from "../../utilities/SearchBar";
 
 class UsersList extends Component {
   state = {
-    users: [],
+    users: [{ id: null, email: "", admin: false }],
     searchTerm: "",
   };
 
