@@ -1,16 +1,17 @@
-import Item from './Item'
+import { CardDeck } from "react-bootstrap";
+import Item from "./Item";
 
 const Items = (props) => {
   const renderItems = () => {
-    return props.items.map(item=>{
-      return <Item addToCart={props.addToCart} key={item.id} item={item} />
-    })
-  }
+    return props.items.map((item) => {
+      return <Item addToCart={props.addToCart} key={item.id} item={item} />;
+    });
+  };
   return (
     <>
-     {renderItems()}
+      <CardDeck>{renderItems()}</CardDeck>
     </>
-  )
-}
+  );
+};
 
-export default Items
+export default Items;
