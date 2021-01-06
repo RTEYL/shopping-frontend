@@ -3,7 +3,7 @@ import { Form, FormControl, InputGroup } from "react-bootstrap";
 
 const SearchBar = (props) => {
   return (
-    <Form onSubmit={(e) => e.preventDefault()} inline>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <InputGroup>
         <FormControl
           type="search"

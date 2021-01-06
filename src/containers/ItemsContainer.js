@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Items from "../components/items/Items";
 import { addToCart } from "../actions/CartActions";
-import { Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { sortByPrice } from "../actions/ItemActions";
 import SearchBar from "../utilities/SearchBar";
 
@@ -32,8 +32,9 @@ class ItemsContainer extends Component {
 
   render() {
     return (
-      <Container className="items-container">
-        <Row>
+      <Container fluid className="items-container">
+        <Row noGutters>
+          <Col></Col>
           <SearchBar
             placeholder="Search Items..."
             onChange={this.handleSearch}
