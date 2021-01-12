@@ -60,3 +60,4 @@ const mapDispatchToProps = (dispatch) => {
 export const CartContainer = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CartPage)
 );
+export { CartContainer as default } from "./CartContainer";

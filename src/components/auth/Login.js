@@ -35,6 +35,7 @@ class LoginForm extends Component {
         )}
         <form onSubmit={this.handleSubmit}>
           <input
+            autoComplete="current-email"
             placeholder="Email"
             type="email"
             name="email"
@@ -42,6 +43,7 @@ class LoginForm extends Component {
             onChange={this.handleChange}
           />
           <input
+            autoComplete="current-password"
             placeholder="Password"
             type="password"
             name="password"
@@ -74,3 +76,4 @@ const mapStateToProps = (state) => {
 export const Login = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 );
+export { Login as default } from "./Login";

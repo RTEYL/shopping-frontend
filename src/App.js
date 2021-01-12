@@ -1,19 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
-import ItemsContainer from "./containers/ItemsContainer";
-import { CartContainer } from "./containers/CartContainer";
-import OrdersContainer from "./containers/OrdersContainer";
-import NavBar from "./components/NavBar";
-import { Login } from "./components/auth/Login";
-import { Logout } from "./components/auth/Logout";
-import { SignUp } from "./components/auth/SignUp";
-import AdminRoutes from "./components/admin/AdminRoutes";
 import { fetchLoggedInUser } from "./actions/Fetch";
 import { fetchItems } from "./actions/ItemActions";
-import About from "./components/About";
+const ItemsContainer = lazy(() => import("./containers/ItemsContainer"));
+const CartContainer = lazy(() => import("./containers/CartContainer"));
+const OrdersContainer = lazy(() => import("./containers/OrdersContainer"));
+const NavBar = lazy(() => import("./components/NavBar"));
+const Login = lazy(() => import("./components/auth/Login"));
+const Logout = lazy(() => import("./components/auth/Logout"));
+const SignUp = lazy(() => import("./components/auth/SignUp"));
+const AdminRoutes = lazy(() => import("./components/admin/AdminRoutes"));
+const About = lazy(() => import("./components/About"));
 
 class App extends Component {
   componentDidMount() {
@@ -25,25 +25,27 @@ class App extends Component {
     return (
       <>
         <Router>
-          <NavBar />
-          <Container>
-            <Switch>
-              <Route exact path="/" component={ItemsContainer} />
-              <Route exact path="/cart" component={CartContainer} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/logout" component={Logout} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/about" component={About} />
-              <Route path="/users/:id/orders" component={OrdersContainer} />
-              <Route
-                path="/admin"
-                render={(props) => (
-                  <AdminRoutes {...props} admin={this.props.user.admin} />
-                )}
-              />
-              <Route component={ItemsContainer} />
-            </Switch>
-          </Container>
+          <Suspense fallback={<div>Loading...</div>}>
+            <NavBar />
+            <Container>
+              <Switch>
+                <Route exact path="/" component={ItemsContainer} />
+                <Route exact path="/cart" component={CartContainer} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/logout" component={Logout} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/about" component={About} />
+                <Route path="/users/:id/orders" component={OrdersContainer} />
+                <Route
+                  path="/admin"
+                  render={(props) => (
+                    <AdminRoutes {...props} admin={this.props.user.admin} />
+                  )}
+                />
+                <Route component={ItemsContainer} />
+              </Switch>
+            </Container>
+          </Suspense>
         </Router>
       </>
     );

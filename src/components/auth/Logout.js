@@ -1,21 +1,23 @@
-import {Component} from 'react'
-import { connect } from 'react-redux'
+import { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import {logoutUser} from '../../actions/Fetch'
+import { logoutUser } from "../../actions/Fetch";
 
-
-class LogoutForm extends Component{
-  componentDidMount(){
-    this.props.logoutUser()
-    this.props.history.push('/')
+class LogoutForm extends Component {
+  componentDidMount() {
+    this.props.logoutUser();
+    this.props.history.push("/");
   }
-  render(){ return null }
+  render() {
+    return null;
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logoutUser: () => dispatch(logoutUser())
-  }
-}
+    logoutUser: () => dispatch(logoutUser()),
+  };
+};
 
-export const Logout =  withRouter(connect(null, mapDispatchToProps)(LogoutForm));
+export const Logout = withRouter(connect(null, mapDispatchToProps)(LogoutForm));
+export { Logout as default } from "./Logout";
