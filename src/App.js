@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import { fetchLoggedInUser } from "./actions/Fetch";
-import { fetchItems } from "./actions/ItemActions";
+import NavBar from "./components/NavBar";
 const ItemsContainer = lazy(() => import("./containers/ItemsContainer"));
 const CartContainer = lazy(() => import("./containers/CartContainer"));
 const OrdersContainer = lazy(() => import("./containers/OrdersContainer"));
-const NavBar = lazy(() => import("./components/NavBar"));
 const Login = lazy(() => import("./components/auth/Login"));
 const Logout = lazy(() => import("./components/auth/Logout"));
 const SignUp = lazy(() => import("./components/auth/SignUp"));
@@ -17,17 +16,17 @@ const About = lazy(() => import("./components/About"));
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchLoggedInUser();
-    this.props.fetchItems();
+    const token = localStorage.getItem("token");
+    token && this.props.fetchLoggedInUser();
   }
 
   render() {
     return (
       <>
         <Router>
-          <Suspense fallback={<div>Loading...</div>}>
-            <NavBar />
-            <Container>
+          <NavBar />
+          <Container>
+            <Suspense fallback={<div>Loading...</div>}>
               <Switch>
                 <Route exact path="/" component={ItemsContainer} />
                 <Route exact path="/cart" component={CartContainer} />
@@ -44,8 +43,8 @@ class App extends Component {
                 />
                 <Route component={ItemsContainer} />
               </Switch>
-            </Container>
-          </Suspense>
+            </Suspense>
+          </Container>
         </Router>
       </>
     );
@@ -54,7 +53,6 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchItems: () => dispatch(fetchItems()),
     fetchLoggedInUser: () => dispatch(fetchLoggedInUser()),
   };
 };

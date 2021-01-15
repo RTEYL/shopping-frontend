@@ -1,15 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, lazy } from "react";
 import { connect } from "react-redux";
-import Items from "../components/items/Items";
 import { addToCart } from "../actions/CartActions";
 import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { fetchItems } from "../actions/ItemActions";
 import { sortByPrice } from "../actions/ItemActions";
 import SearchBar from "../utilities/SearchBar";
+import { Suspense } from "react";
+const Items = lazy(() => import("../components/items/Items"));
 
 class ItemsContainer extends Component {
   state = {
     searchTerm: "",
   };
+
+  componentDidMount() {
+    this.props.fetchItems();
+  }
 
   handleClick = (event) => {
     this.props.sortByPrice(this.props.items, event.target.value);
@@ -61,7 +67,12 @@ class ItemsContainer extends Component {
           </DropdownButton>
         </Row>
         <Row>
-          <Items addToCart={this.props.addToCart} items={this.filterItems()} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Items
+              addToCart={this.props.addToCart}
+              items={this.filterItems()}
+            />
+          </Suspense>
         </Row>
       </Container>
     );
@@ -76,6 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchItems: () => dispatch(fetchItems()),
     addToCart: (item) => dispatch(addToCart(item)),
     sortByPrice: (items, method) => dispatch(sortByPrice(items, method)),
   };
