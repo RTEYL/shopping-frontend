@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Table } from "react-bootstrap";
 import SearchBar from "../../utilities/SearchBar";
+import { token } from "../../actions/Fetch";
 
 class UsersList extends Component {
   state = {
@@ -14,6 +15,7 @@ class UsersList extends Component {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((resp) => resp.json())
@@ -28,6 +30,7 @@ class UsersList extends Component {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(user),
     })

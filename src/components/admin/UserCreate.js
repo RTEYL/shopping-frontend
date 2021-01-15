@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Alert, Form } from "react-bootstrap";
+import { token } from "../../actions/Fetch";
 
 class UserCreate extends Component {
   state = {
@@ -26,6 +27,7 @@ class UserCreate extends Component {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ user: this.state }),
     };

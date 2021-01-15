@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
+import { token } from "../../actions/Fetch";
 
 class UserEdit extends Component {
   state = {
@@ -18,6 +19,7 @@ class UserEdit extends Component {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -36,6 +38,7 @@ class UserEdit extends Component {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(this.state),
       }

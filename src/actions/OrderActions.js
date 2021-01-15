@@ -1,3 +1,5 @@
+import { token } from "./Fetch";
+
 export const createOrder = (order) => {
   return (dispatch) => {
     dispatch({ type: "CREATE_ORDER", payload: order });
@@ -48,6 +50,7 @@ export const fetchOrders = (user) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
   };
   return (dispatch) => {

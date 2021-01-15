@@ -1,8 +1,16 @@
 import { fetchOrders } from "./OrderActions";
+
+export const token = localStorage.getItem("token");
+
 export const fetchLoggedInUser = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     fetch("https://shopping-center-api.herokuapp.com/logged_in", {
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then((resp) => resp.json())
       .then((json) => dispatch({ type: "IS_LOGGED_IN", payload: json }))
@@ -27,6 +35,7 @@ export const loginUser = (payload) => {
         if (!!json.errors) {
           throw (new Error().message = json.errors);
         } else {
+          localStorage.setItem("token", json.jwt);
           dispatch(fetchOrders(json.user));
           dispatch({ type: "LOG_IN", payload: json });
           payload.history.push("/");
@@ -46,6 +55,7 @@ export const logoutUser = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((resp) => resp.json())
@@ -60,6 +70,7 @@ export const userSignUp = (payload) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(payload),
   };

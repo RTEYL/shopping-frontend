@@ -1,3 +1,5 @@
+import { token } from "./Fetch";
+
 export const deleteItem = (item) => {
   let configObj = {
     credentials: "include",
@@ -5,6 +7,7 @@ export const deleteItem = (item) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
   };
   return (dispatch) => {
@@ -25,6 +28,7 @@ export const updateItem = ({ item, history }) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   };
@@ -47,6 +51,7 @@ export const createItem = ({ item, history }) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   };

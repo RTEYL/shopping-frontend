@@ -23,6 +23,7 @@ export default function UserReducer(state = initialState, { type, payload }) {
         isAdmin: payload.user.admin,
       };
     case "LOG_OUT":
+      localStorage.removeItem("token");
       return {
         ...state,
         user: {},
