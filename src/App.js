@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import { fetchLoggedInUser } from "./actions/Fetch";
 import NavBar from "./components/NavBar";
+import { token } from "./actions/Fetch";
 const ItemsContainer = lazy(() => import("./containers/ItemsContainer"));
 const CartContainer = lazy(() => import("./containers/CartContainer"));
 const OrdersContainer = lazy(() => import("./containers/OrdersContainer"));
@@ -16,7 +17,6 @@ const About = lazy(() => import("./components/About"));
 
 class App extends Component {
   componentDidMount() {
-    const token = localStorage.getItem("token");
     token && this.props.fetchLoggedInUser();
   }
 
