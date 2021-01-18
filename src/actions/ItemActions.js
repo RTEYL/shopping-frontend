@@ -13,7 +13,13 @@ export const sortByPrice = (items, method) => {
 };
 export const fetchItems = () => {
   return (dispatch) => {
-    fetch("https://shopping-center-api.herokuapp.com/api/v1/items")
+    fetch("https://shopping-center-api.herokuapp.com/api/v1/items", {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((json) => dispatch({ type: "ADD_ITEM", payload: json }))
       .catch((err) => console.log("fetch error", err));
