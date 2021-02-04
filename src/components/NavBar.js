@@ -34,7 +34,7 @@ const NavBar = (props) => {
   return (
     <Navbar collapseOnSelect bg="light" expand="lg" sticky="top">
       <Navbar.Brand as={Link} to="/">
-        Shopping Center
+        <span role="heading">Shopping Center</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

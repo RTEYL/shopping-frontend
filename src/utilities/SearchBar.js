@@ -7,6 +7,7 @@ const SearchBar = (props) => {
       <InputGroup>
         <FormControl
           type="search"
+          aria-label="Search"
           className="search-bar"
           placeholder={props.placeholder}
           onChange={props.onChange}
