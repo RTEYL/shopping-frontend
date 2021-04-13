@@ -1,10 +1,25 @@
-import { Card, Col } from "react-bootstrap";
-import ReactImageMagnify from "react-image-magnify";
+import React from 'react';
+import { Card, Col, Overlay, Button } from 'react-bootstrap';
+import ReactImageMagnify from 'react-image-magnify';
 
 const Item = (props) => {
+  const [active, setActive] = React.useState(false);
+  const target = React.useRef(null);
+  const activeRef = React.useRef(active);
+
+  const itemAddedToCart = () => {
+    setTimeout(() => {
+      setActive(!activeRef);
+    }, 1500);
+  };
+  const handleClick = () => {
+    setActive(!active);
+    itemAddedToCart();
+    props.addToCart(props.item);
+  };
   return (
     <Col sm={6.5} md={6} lg={4} xl={3}>
-      <Card bg="light">
+      <Card bg='light'>
         <ReactImageMagnify
           {...{
             smallImage: {
@@ -12,7 +27,7 @@ const Item = (props) => {
               isFluidWidth: true,
               src: props.item.image,
               sizes:
-                "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
+                '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
             },
             largeImage: {
               alt: props.item.name,
@@ -20,9 +35,7 @@ const Item = (props) => {
               width: 800,
               height: 1000,
             },
-            enlargedImagePosition: "over",
-            isHintEnabled: true,
-            shouldHideHintAfterFirstActivation: true,
+            enlargedImagePosition: 'over',
           }}
         />
         <Card.Body>
@@ -33,10 +46,29 @@ const Item = (props) => {
             <br />
             {props.item.description}
           </Card.Text>
-          ${props.item.price}{" "}
-          <button onClick={() => props.addToCart(props.item)}>
+          ${props.item.price}{' '}
+          <Button
+            variant='outline-dark'
+            ref={target}
+            onClick={() => handleClick()}>
             Add To Cart
-          </button>
+          </Button>
+          <Overlay target={target.current} show={active} placement='right'>
+            {({ placement, arrowProps, show: _show, popper, ...props }) => (
+              <div
+                {...props}
+                style={{
+                  backgroundColor: '#343a40',
+
+                  marginLeft: '.5%',
+                  color: 'white',
+                  borderRadius: 3,
+                  ...props.style,
+                }}>
+                Added to Cart!
+              </div>
+            )}
+          </Overlay>
         </Card.Body>
       </Card>
     </Col>
